@@ -91,6 +91,25 @@ class App extends Component {
 				},
 			],
 		};
+		this.handleGeneralInfoUpdate = this.handleGeneralInfoUpdate.bind(this);
+	}
+
+	handleInputChange(e) {
+		const target = e.target;
+		const name = target.name;
+		const value = target.value;
+		this.setState({ [name]: value });
+	}
+
+	handleGeneralInfoUpdate(newGeneralInfo) {
+		const { fullName, email, phoneNumber } = newGeneralInfo;
+		this.setState({
+			generalInfo: {
+				fullName,
+				email,
+				phoneNumber,
+			},
+		});
 	}
 
 	render() {
@@ -103,6 +122,8 @@ class App extends Component {
 					skills={skills}
 					experiences={experiences}
 					educations={educations}
+					handleInputChange={this.handleInputChange}
+					handleGeneralInfoUpdate={this.handleGeneralInfoUpdate}
 				/>
 			</main>
 		);

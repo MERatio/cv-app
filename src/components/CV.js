@@ -6,13 +6,24 @@ import Experiences from './Experiences';
 import Educations from './Educations';
 
 function CV(props) {
-	const { generalInfo, skills, experiences, educations } = props;
+	const {
+		generalInfo,
+		skills,
+		experiences,
+		educations,
+		handleInputChange,
+		handleGeneralInfoUpdate,
+	} = props;
 
 	return (
 		<article className="container my-4">
 			<div className="row justify-content-center">
 				<div className="col-md-8 p-5 bg-white box-shadow">
-					<GeneralInfo generalInfo={generalInfo} />
+					<GeneralInfo
+						generalInfo={generalInfo}
+						handleInputChange={handleInputChange}
+						handleSubmit={handleGeneralInfoUpdate}
+					/>
 					<hr />
 					<Skills skills={skills} />
 					<hr />
