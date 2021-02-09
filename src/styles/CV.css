@@ -1,3 +1,11 @@
+#CV {
+	min-height: 1070px;
+}
+
+#CV > section {
+	min-height: 2em;
+}
+
 section {
 	position: relative;
 }

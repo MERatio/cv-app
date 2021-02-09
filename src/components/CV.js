@@ -16,7 +16,7 @@ function CV(props) {
 	} = props;
 
 	return (
-		<article className="col-md-8 p-5 bg-white box-shadow">
+		<article id="CV" className="col-md-8 p-5 bg-white box-shadow">
 			<GeneralInfo
 				generalInfo={generalInfo}
 				handleInputChange={handleInputChange}
