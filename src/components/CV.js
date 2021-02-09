@@ -16,22 +16,18 @@ function CV(props) {
 	} = props;
 
 	return (
-		<article className="container my-4">
-			<div className="row justify-content-center">
-				<div className="col-md-8 p-5 bg-white box-shadow">
-					<GeneralInfo
-						generalInfo={generalInfo}
-						handleInputChange={handleInputChange}
-						handleSubmit={handleGeneralInfoUpdate}
-					/>
-					<hr />
-					<Skills skills={skills} />
-					<hr />
-					<Experiences experiences={experiences} />
-					<hr />
-					<Educations educations={educations} />
-				</div>
-			</div>
+		<article className="col-md-8 p-5 bg-white box-shadow">
+			<GeneralInfo
+				generalInfo={generalInfo}
+				handleInputChange={handleInputChange}
+				handleSubmit={handleGeneralInfoUpdate}
+			/>
+			<hr />
+			<Skills skills={skills} />
+			<hr />
+			<Experiences experiences={experiences} />
+			<hr />
+			<Educations educations={educations} />
 		</article>
 	);
 }

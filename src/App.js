@@ -117,14 +117,18 @@ class App extends Component {
 
 		return (
 			<main>
-				<CV
-					generalInfo={generalInfo}
-					skills={skills}
-					experiences={experiences}
-					educations={educations}
-					handleInputChange={this.handleInputChange}
-					handleGeneralInfoUpdate={this.handleGeneralInfoUpdate}
-				/>
+				<div className="container my-4">
+					<div className="row justify-content-center">
+						<CV
+							generalInfo={generalInfo}
+							skills={skills}
+							experiences={experiences}
+							educations={educations}
+							handleInputChange={this.handleInputChange}
+							handleGeneralInfoUpdate={this.handleGeneralInfoUpdate}
+						/>
+					</div>
+				</div>
 			</main>
 		);
 	}
