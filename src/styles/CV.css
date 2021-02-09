@@ -1,0 +1,46 @@
+.dd-h2 {
+	font-size: 1.2em;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #00ab44;
+	margin-bottom: 12px;
+}
+
+.dd-ul {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.dd-li:not(:first-child) {
+	margin-top: 8px;
+}
+
+.box-shadow {
+	box-shadow: 0 1px 3px 1px rgba(50, 50, 50, 0.15);
+}
+
+.dd-user-title {
+	font-style: italic;
+	opacity: 0.8;
+}
+
+.from-to-date {
+	font-style: italic;
+	font-size: 0.9em;
+	opacity: 0.8;
+	margin-bottom: 4px;
+}
+
+.skills-list {
+	list-style-type: none;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 0.8em;
+}
+
+.skills-list-item {
+	text-align: center;
+	padding: 1em;
+	border: 1px solid #bdc3c7;
+}
