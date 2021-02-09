@@ -48,38 +48,8 @@ class App extends Component {
 						},
 					],
 				},
-				{
-					id: nanoid(),
-					companyName: 'NAPOLCOM, Quezon City',
-					positionTitle: 'IT Officer (OJT)',
-					date: {
-						from: '2018-11-01',
-						to: '2019-03-01',
-					},
-					mainTasks: [
-						{
-							id: nanoid(),
-							description:
-								'Diagnose and troubleshoot software, hardware and network related problems',
-						},
-						{
-							id: nanoid(),
-							description:
-								'Handle calls from the employee about their technical problems',
-						},
-					],
-				},
 			],
 			educations: [
-				{
-					id: nanoid(),
-					school: 'STI Novaliches',
-					title: 'Bachelor of Science in Information Technology',
-					date: {
-						from: '2015-06-01',
-						to: '2019-04-01',
-					},
-				},
 				{
 					id: nanoid(),
 					school: 'STI Novaliches',
