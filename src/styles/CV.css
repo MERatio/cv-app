@@ -3,11 +3,8 @@
 }
 
 #CV > section {
-	min-height: 2em;
-}
-
-section {
 	position: relative;
+	min-height: 2em;
 }
 
 .dd-h2 {
