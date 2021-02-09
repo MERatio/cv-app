@@ -9,7 +9,12 @@ class GeneralInfoForm extends Component {
 			phoneNumber: this.props.generalInfo.phoneNumber,
 		};
 		this.handleInputChange = this.props.handleInputChange.bind(this);
+		this.handleCancelEdit = this.handleCancelEdit.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleCancelEdit() {
+		this.props.changeEditMode(false);
 	}
 
 	handleSubmit(e) {
@@ -64,6 +69,13 @@ class GeneralInfoForm extends Component {
 				</div>
 				<button type="submit" className="btn btn-primary">
 					Update
+				</button>
+				<button
+					type="button"
+					className="btn btn-primary ml-2"
+					onClick={this.handleCancelEdit}
+				>
+					Cancel
 				</button>
 			</form>
 		);
