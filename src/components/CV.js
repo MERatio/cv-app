@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 import '../styles/CV.css';
 
 import GeneralInfo from './GeneralInfo';
@@ -11,11 +12,65 @@ class CV extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			generalInfo: {
+				fullName: 'Mark Edward Ratio',
+				email: 'markedwardratio@gmail.com',
+				phoneNumber: '092929xxxxx',
+			},
+			skills: [
+				{ id: nanoid(), name: 'HTML' },
+				{ id: nanoid(), name: 'CSS' },
+				{ id: nanoid(), name: 'JavaScript' },
+				{ id: nanoid(), name: 'React' },
+				{ id: nanoid(), name: 'Node.js' },
+				{ id: nanoid(), name: 'Express.js' },
+				{ id: nanoid(), name: 'Ruby' },
+				{ id: nanoid(), name: 'Ruby on Rails' },
+				{ id: nanoid(), name: 'Sass' },
+				{ id: nanoid(), name: 'Bootstrap' },
+				{ id: nanoid(), name: 'Git' },
+				{ id: nanoid(), name: 'Jest' },
+			],
+			experiences: [
+				{
+					id: nanoid(),
+					companyName: 'NAPOLCOM, Quezon City',
+					positionTitle: 'IT Officer (OJT)',
+					date: {
+						from: '2018-11-01',
+						to: '2019-03-01',
+					},
+					mainTasks: [
+						{
+							id: nanoid(),
+							description:
+								'Diagnose and troubleshoot software, hardware and network related problems',
+						},
+						{
+							id: nanoid(),
+							description:
+								'Handle calls from the employee about their technical problems',
+						},
+					],
+				},
+			],
+			educations: [
+				{
+					id: nanoid(),
+					school: 'STI Novaliches',
+					title: 'Bachelor of Science in Information Technology',
+					date: {
+						from: '2015-06-01',
+						to: '2019-04-01',
+					},
+				},
+			],
 			editModes: {
 				generalInfo: false,
 			},
 		};
 		this.changeEditMode = this.changeEditMode.bind(this);
+		this.handleGeneralInfoUpdate = this.handleGeneralInfoUpdate.bind(this);
 	}
 
 	changeEditMode(section, editMode) {
@@ -29,25 +84,36 @@ class CV extends Component {
 		});
 	}
 
+	handleGeneralInfoUpdate(newGeneralInfo) {
+		const { fullName, email, phoneNumber } = newGeneralInfo;
+		this.setState({
+			generalInfo: {
+				fullName,
+				email,
+				phoneNumber,
+			},
+		});
+	}
+
 	render() {
+		const { handleInputChange } = this.props;
+
 		const {
 			generalInfo,
 			skills,
 			experiences,
 			educations,
-			handleInputChange,
-			handleGeneralInfoUpdate,
-		} = this.props;
-		const { editModes } = this.state;
+			editModes,
+		} = this.state;
 
 		return (
 			<article id="CV" className="col-md-8 p-5 bg-white box-shadow">
 				{editModes.generalInfo ? (
 					<GeneralInfoForm
+						handleInputChange={handleInputChange}
 						generalInfo={generalInfo}
 						changeEditMode={this.changeEditMode}
-						handleInputChange={handleInputChange}
-						handleSubmit={handleGeneralInfoUpdate}
+						handleSubmit={this.handleGeneralInfoUpdate}
 					/>
 				) : (
 					<GeneralInfo
