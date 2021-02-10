@@ -15,7 +15,6 @@ function GeneralInfo(props) {
 			<button
 				type="button"
 				className="btn btn-warning edit-btn"
-				id="editGeneralInfoBtn"
 				onClick={() => changeEditMode('generalInfo', true)}
 			>
 				Edit
