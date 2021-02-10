@@ -72,7 +72,7 @@ class GeneralInfoForm extends Component {
 				</button>
 				<button
 					type="button"
-					className="btn btn-primary ml-2"
+					className="btn btn-secondary ml-2"
 					onClick={this.handleCancelEdit}
 				>
 					Cancel
