@@ -14,13 +14,13 @@ class GeneralInfoForm extends Component {
 	}
 
 	handleCancelEdit() {
-		this.props.changeEditMode(false);
+		this.props.changeEditMode('generalInfo', false);
 	}
 
 	handleSubmit(e) {
 		e.preventDefault();
 		this.props.handleSubmit(this.state);
-		this.props.changeEditMode(false);
+		this.props.changeEditMode('generalInfo', false);
 	}
 
 	render() {
