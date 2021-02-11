@@ -94,25 +94,30 @@ class GeneralInfoForm extends Component {
 		});
 
 		return (
-			<form onSubmit={this.handleSubmit}>
-				{skillInputs}
-				<button
-					className="btn btn-dark d-block mb-4"
-					onClick={this.handleAddSkillInput}
-				>
-					Add new skill
-				</button>
-				<button type="submit" className="btn btn-primary">
-					Update
-				</button>
-				<button
-					type="button"
-					className="btn btn-secondary ml-2"
-					onClick={this.handleCancelEdit}
-				>
-					Cancel
-				</button>
-			</form>
+			<div>
+				<header>
+					<h2 className="dd-h2 mb-4">Skills</h2>
+				</header>
+				<form onSubmit={this.handleSubmit}>
+					{skillInputs}
+					<button
+						className="btn btn-dark d-block mb-4"
+						onClick={this.handleAddSkillInput}
+					>
+						Add new skill
+					</button>
+					<button type="submit" className="btn btn-primary">
+						Update
+					</button>
+					<button
+						type="button"
+						className="btn btn-secondary ml-2"
+						onClick={this.handleCancelEdit}
+					>
+						Cancel
+					</button>
+				</form>
+			</div>
 		);
 	}
 }
