@@ -75,7 +75,7 @@ class GeneralInfoForm extends Component {
 						placeholder="Add your skill"
 						maxLength="255"
 						required
-						pattern="^.*[a-zA-Z0-9].*$"
+						pattern="^.*[\S].*$"
 						onChange={(e) => this.onInputChange(skill.id, e)}
 					/>
 					<button
