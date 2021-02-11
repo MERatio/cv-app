@@ -1,5 +1,5 @@
 function Skills(props) {
-	const { skills } = props;
+	const { skills, changeEditMode } = props;
 	const skillsListItems = skills.map((skill) => {
 		return (
 			<li key={skill.id} className="skills-list-item">
@@ -11,9 +11,16 @@ function Skills(props) {
 	return (
 		<section>
 			<header>
-				<h2 className="dd-h2">Skills</h2>
+				<h2 className="dd-h2 mb-4">Skills</h2>
 			</header>
 			<ul className="skills-list">{skillsListItems}</ul>
+			<button
+				type="button"
+				className="btn btn-warning edit-btn"
+				onClick={() => changeEditMode('skills', true)}
+			>
+				Edit
+			</button>
 		</section>
 	);
 }

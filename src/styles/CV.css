@@ -7,6 +7,16 @@
 	min-height: 2em;
 }
 
+.delete-btn {
+	background: none;
+	padding: 0;
+	border: none;
+}
+
+.delete-btn:hover {
+	color: #c82333 !important;
+}
+
 .dd-h2 {
 	font-size: 1.2em;
 	font-weight: 700;

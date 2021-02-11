@@ -5,6 +5,7 @@ import '../styles/CV.css';
 import GeneralInfo from './GeneralInfo';
 import GeneralInfoForm from './GeneralInfoForm';
 import Skills from './Skills';
+import SkillsForm from './SkillsForm';
 import Experiences from './Experiences';
 import Educations from './Educations';
 
@@ -67,10 +68,12 @@ class CV extends Component {
 			],
 			editModes: {
 				generalInfo: false,
+				skills: false,
 			},
 		};
 		this.changeEditMode = this.changeEditMode.bind(this);
 		this.handleGeneralInfoUpdate = this.handleGeneralInfoUpdate.bind(this);
+		this.handleSkillsUpdate = this.handleSkillsUpdate.bind(this);
 	}
 
 	changeEditMode(section, editMode) {
@@ -93,6 +96,10 @@ class CV extends Component {
 				phoneNumber,
 			},
 		});
+	}
+
+	handleSkillsUpdate(newSkills) {
+		this.setState({ skills: newSkills });
 	}
 
 	render() {
@@ -122,7 +129,15 @@ class CV extends Component {
 					/>
 				)}
 				<hr />
-				<Skills skills={skills} />
+				{editModes.skills ? (
+					<SkillsForm
+						skills={skills}
+						changeEditMode={this.changeEditMode}
+						onSubmit={this.handleSkillsUpdate}
+					/>
+				) : (
+					<Skills skills={skills} changeEditMode={this.changeEditMode} />
+				)}
 				<hr />
 				<Experiences experiences={experiences} />
 				<hr />
