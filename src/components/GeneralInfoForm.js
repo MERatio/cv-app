@@ -38,6 +38,7 @@ class GeneralInfoForm extends Component {
 						value={fullName}
 						maxLength="255"
 						required
+						pattern="^.*[\S].*$"
 						onChange={this.handleInputChange}
 					/>
 				</div>
@@ -65,6 +66,7 @@ class GeneralInfoForm extends Component {
 						maxLength="20"
 						onChange={this.handleInputChange}
 						required
+						pattern="^.*[\S].*$"
 					/>
 				</div>
 				<button type="submit" className="btn btn-primary">
