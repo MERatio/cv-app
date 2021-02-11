@@ -120,7 +120,7 @@ class CV extends Component {
 						handleInputChange={handleInputChange}
 						generalInfo={generalInfo}
 						changeEditMode={this.changeEditMode}
-						handleSubmit={this.handleGeneralInfoUpdate}
+						onSubmit={this.handleGeneralInfoUpdate}
 					/>
 				) : (
 					<GeneralInfo

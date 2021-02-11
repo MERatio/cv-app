@@ -19,7 +19,7 @@ class GeneralInfoForm extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.handleSubmit(this.state);
+		this.props.onSubmit(this.state);
 		this.props.changeEditMode('generalInfo', false);
 	}
 
