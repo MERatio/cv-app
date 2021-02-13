@@ -1,5 +1,5 @@
 function Experiences(props) {
-	const { experiences } = props;
+	const { experiences, changeEditMode } = props;
 	const experiencesListItems = experiences.map((experience) => {
 		return (
 			<li key={experience.id} className="dd-li">
@@ -28,6 +28,13 @@ function Experiences(props) {
 				<h2 className="dd-h2">Experience</h2>
 			</header>
 			<ul className="dd-ul">{experiencesListItems}</ul>
+			<button
+				type="button"
+				className="btn btn-warning edit-btn"
+				onClick={() => changeEditMode('experiences', true)}
+			>
+				Edit
+			</button>
 		</section>
 	);
 }

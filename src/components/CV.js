@@ -7,6 +7,7 @@ import GeneralInfoForm from './GeneralInfoForm';
 import Skills from './Skills';
 import SkillsForm from './SkillsForm';
 import Experiences from './Experiences';
+import ExperiencesForm from './ExperiencesForm';
 import Educations from './Educations';
 
 class CV extends Component {
@@ -70,11 +71,13 @@ class CV extends Component {
 			editModes: {
 				generalInfo: false,
 				skills: false,
+				experiences: false,
 			},
 		};
 		this.changeEditMode = this.changeEditMode.bind(this);
 		this.handleGeneralInfoUpdate = this.handleGeneralInfoUpdate.bind(this);
 		this.handleSkillsUpdate = this.handleSkillsUpdate.bind(this);
+		this.handleExperiencesUpdate = this.handleExperiencesUpdate.bind(this);
 	}
 
 	changeEditMode(section, editMode) {
@@ -101,6 +104,10 @@ class CV extends Component {
 
 	handleSkillsUpdate(newSkills) {
 		this.setState({ skills: newSkills });
+	}
+
+	handleExperiencesUpdate(newExperiences) {
+		this.setState({ experiences: newExperiences });
 	}
 
 	render() {
@@ -140,7 +147,18 @@ class CV extends Component {
 					<Skills skills={skills} changeEditMode={this.changeEditMode} />
 				)}
 				<hr />
-				<Experiences experiences={experiences} />
+				{editModes.experiences ? (
+					<ExperiencesForm
+						experiences={experiences}
+						changeEditMode={this.changeEditMode}
+						onSubmit={this.handleExperiencesUpdate}
+					/>
+				) : (
+					<Experiences
+						experiences={experiences}
+						changeEditMode={this.changeEditMode}
+					/>
+				)}
 				<hr />
 				<Educations educations={educations} />
 			</article>

@@ -69,3 +69,15 @@
 	top: 0;
 	right: 0;
 }
+
+/* Experiences */
+
+#experienceInputs {
+	position: relative;
+}
+
+#deleteExperienceBtn {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+}
