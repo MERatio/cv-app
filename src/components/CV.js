@@ -40,6 +40,7 @@ class CV extends Component {
 					date: {
 						from: '2018-11-01',
 						to: '2019-03-01',
+						toPresent: false,
 					},
 					mainTasks: [
 						{
