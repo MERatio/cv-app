@@ -10,14 +10,14 @@ class GeneralInfoForm extends Component {
 			skills: this.props.skills,
 		};
 
-		this.onInputChange = this.onInputChange.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleSkillDelete = this.handleSkillDelete.bind(this);
 		this.handleAddSkillInput = this.handleAddSkillInput.bind(this);
-		this.onSkillDelete = this.onSkillDelete.bind(this);
 		this.handleCancelEdit = this.handleCancelEdit.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	onInputChange(skillId, e) {
+	handleInputChange(skillId, e) {
 		const target = e.target;
 		const name = target.name;
 		const value = target.value;
@@ -34,20 +34,20 @@ class GeneralInfoForm extends Component {
 		});
 	}
 
-	handleAddSkillInput() {
-		this.setState((state) => {
-			return {
-				skills: state.skills.concat({ id: nanoid(), name: '' }),
-			};
-		});
-	}
-
-	onSkillDelete(skillId) {
+	handleSkillDelete(skillId) {
 		this.setState((state) => {
 			return {
 				skills: state.skills.filter((skill) => {
 					return skill.id !== skillId;
 				}),
+			};
+		});
+	}
+
+	handleAddSkillInput() {
+		this.setState((state) => {
+			return {
+				skills: state.skills.concat({ id: nanoid(), name: '' }),
 			};
 		});
 	}
@@ -76,12 +76,12 @@ class GeneralInfoForm extends Component {
 						maxLength="255"
 						required
 						pattern="^.*[\S].*$"
-						onChange={(e) => this.onInputChange(skill.id, e)}
+						onChange={(e) => this.handleInputChange(skill.id, e)}
 					/>
 					<button
 						type="button"
 						className="delete-btn cursor-pointer text-danger ml-2"
-						onClick={() => this.onSkillDelete(skill.id)}
+						onClick={() => this.handleSkillDelete(skill.id)}
 					>
 						<FontAwesomeIcon
 							icon={faTimesCircle}
