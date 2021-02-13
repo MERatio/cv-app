@@ -9,7 +9,9 @@ function Experiences(props) {
 				</p>
 				<p className="from-to-date">
 					<span>{experience.date.from}</span> -{' '}
-					<span>{experience.date.to}</span>
+					<span>
+						{experience.date.toPresent ? 'Present' : experience.date.to}
+					</span>
 				</p>
 				<ul>
 					{experience.mainTasks.map((mainTask) => {
