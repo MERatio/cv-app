@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import pluralize from 'pluralize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -96,7 +97,7 @@ class GeneralInfoForm extends Component {
 		return (
 			<div>
 				<header>
-					<h2 className="dd-h2 mb-4">Skills</h2>
+					<h2 className="dd-h2 mb-4">{pluralize('Skill', skills.length)}</h2>
 				</header>
 				<form onSubmit={this.handleSubmit}>
 					{skillInputs}

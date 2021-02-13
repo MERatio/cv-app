@@ -1,3 +1,5 @@
+import pluralize from 'pluralize';
+
 function Educations(props) {
 	const { educations } = props;
 	const educationsListItems = educations.map((education) => {
@@ -18,7 +20,7 @@ function Educations(props) {
 	return (
 		<section>
 			<header>
-				<h2 className="dd-h2">Education</h2>
+				<h2 className="dd-h2">{pluralize('Education', educations.length)}</h2>
 			</header>
 			<ul className="dd-ul">{educationsListItems}</ul>
 		</section>

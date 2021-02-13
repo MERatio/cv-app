@@ -1,3 +1,5 @@
+import pluralize from 'pluralize';
+
 function Skills(props) {
 	const { skills, changeEditMode } = props;
 	const skillsListItems = skills.map((skill) => {
@@ -11,7 +13,7 @@ function Skills(props) {
 	return (
 		<section>
 			<header>
-				<h2 className="dd-h2 mb-4">Skills</h2>
+				<h2 className="dd-h2 mb-4">{pluralize('Skill', skills.length)}</h2>
 			</header>
 			<ul className="skills-list">{skillsListItems}</ul>
 			<button

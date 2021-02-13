@@ -1,3 +1,5 @@
+import pluralize from 'pluralize';
+
 function Experiences(props) {
 	const { experiences, changeEditMode } = props;
 	const experiencesListItems = experiences.map((experience) => {
@@ -25,7 +27,7 @@ function Experiences(props) {
 	return (
 		<section>
 			<header>
-				<h2 className="dd-h2">Experience</h2>
+				<h2 className="dd-h2">{pluralize('Experience', experiences.length)}</h2>
 			</header>
 			<ul className="dd-ul">{experiencesListItems}</ul>
 			<button
