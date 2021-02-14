@@ -7,6 +7,11 @@
 	min-height: 2em;
 }
 
+#experienceInputs,
+#educationInputs {
+	position: relative;
+}
+
 .dd-h2 {
 	font-size: 1.2em;
 	font-weight: 700;
@@ -24,10 +29,6 @@
 	margin-top: 8px;
 }
 
-.box-shadow {
-	box-shadow: 0 1px 3px 1px rgba(50, 50, 50, 0.15);
-}
-
 .dd-user-title {
 	font-style: italic;
 	opacity: 0.8;
@@ -38,6 +39,12 @@
 	font-size: 0.9em;
 	opacity: 0.8;
 	margin-bottom: 4px;
+}
+
+.edit-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 .skills-list {
@@ -52,15 +59,4 @@
 	text-align: center;
 	padding: 1em;
 	border: 1px solid #bdc3c7;
-}
-
-.edit-btn {
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-
-#experienceInputs,
-#educationInputs {
-	position: relative;
 }
