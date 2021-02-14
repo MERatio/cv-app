@@ -65,6 +65,7 @@ class CV extends Component {
 					date: {
 						from: '2015-06-01',
 						to: '2019-04-01',
+						toPresent: false,
 					},
 				},
 			],
