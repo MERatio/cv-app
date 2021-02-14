@@ -70,13 +70,13 @@
 	right: 0;
 }
 
-/* Experiences */
-
-#experienceInputs {
+#experienceInputs,
+#educationInputs {
 	position: relative;
 }
 
-#deleteExperienceBtn {
+#deleteExperienceBtn,
+#deleteEducationBtn {
 	position: absolute;
 	top: 0.5rem;
 	right: 0.5rem;

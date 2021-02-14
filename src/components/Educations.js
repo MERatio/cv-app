@@ -1,7 +1,7 @@
 import pluralize from 'pluralize';
 
 function Educations(props) {
-	const { educations } = props;
+	const { educations, changeEditMode } = props;
 	const educationsListItems = educations.map((education) => {
 		return (
 			<li key={education.id} className="dd-li">
@@ -26,6 +26,13 @@ function Educations(props) {
 				<h2 className="dd-h2">{pluralize('Education', educations.length)}</h2>
 			</header>
 			<ul className="dd-ul">{educationsListItems}</ul>
+			<button
+				type="button"
+				className="btn btn-warning edit-btn"
+				onClick={() => changeEditMode('educations', true)}
+			>
+				Edit
+			</button>
 		</section>
 	);
 }
