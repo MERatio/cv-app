@@ -304,6 +304,7 @@ class ExperiencesForm extends Component {
 				<form onSubmit={this.handleSubmit}>
 					{experienceInputs}
 					<button
+						type="button"
 						className="btn btn-dark d-block mb-4"
 						onClick={this.handleAddExperienceInput}
 					>
