@@ -297,7 +297,7 @@ class ExperiencesForm extends Component {
 		return (
 			<div>
 				<header>
-					<h2 className="dd-h2 mb-4">
+					<h2 className="dd-h2">
 						{pluralize('Experience', experiences.length)}
 					</h2>
 				</header>

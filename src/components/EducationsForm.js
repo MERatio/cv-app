@@ -183,9 +183,7 @@ class EducationsForm extends Component {
 		return (
 			<div>
 				<header>
-					<h2 className="dd-h2 mb-4">
-						{pluralize('Education', educations.length)}
-					</h2>
+					<h2 className="dd-h2">{pluralize('Education', educations.length)}</h2>
 				</header>
 				<form onSubmit={this.handleSubmit}>
 					{educationInputs}
