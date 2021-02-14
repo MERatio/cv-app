@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import pluralize from 'pluralize';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
+import XDeleteButton from './XDeleteButton';
 
 class EducationsForm extends Component {
 	constructor(props) {
@@ -89,18 +89,10 @@ class EducationsForm extends Component {
 					className="mb-2 p-4 border border-light rounded"
 					id="educationInputs"
 				>
-					<button
-						type="button"
-						className="delete-btn cursor-pointer text-danger ml-2"
-						id="deleteEducationBtn"
-						onClick={() => this.handleEducationDelete(education.id)}
-					>
-						<FontAwesomeIcon
-							icon={faTimesCircle}
-							size="2x"
-							className="pointer-events-none"
-						/>
-					</button>
+					<XDeleteButton
+						classesProp={'absTopRight'}
+						onClickProp={() => this.handleEducationDelete(education.id)}
+					/>
 					<div className="form-group">
 						<label htmlFor={`${education.id}-school`}>School</label>
 						<input

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import pluralize from 'pluralize';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
+import XDeleteButton from './XDeleteButton';
 
 class GeneralInfoForm extends Component {
 	constructor(props) {
@@ -79,17 +79,10 @@ class GeneralInfoForm extends Component {
 						pattern="^.*[\S].*$"
 						onChange={(e) => this.handleInputChange(skill.id, e)}
 					/>
-					<button
-						type="button"
-						className="delete-btn cursor-pointer text-danger ml-2"
-						onClick={() => this.handleSkillDelete(skill.id)}
-					>
-						<FontAwesomeIcon
-							icon={faTimesCircle}
-							size="2x"
-							className="pointer-events-none"
-						/>
-					</button>
+					<XDeleteButton
+						classesProp={'ml-2'}
+						onClickProp={() => this.handleSkillDelete(skill.id)}
+					/>
 				</div>
 			);
 		});

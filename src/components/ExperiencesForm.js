@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import pluralize from 'pluralize';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
+import XDeleteButton from './XDeleteButton';
 
 class ExperiencesForm extends Component {
 	constructor(props) {
@@ -158,19 +158,11 @@ class ExperiencesForm extends Component {
 							/>
 						</div>
 						<div className="col-1 d-flex align-items-end">
-							<button
-								type="button"
-								className="delete-btn cursor-pointer text-danger mb-1"
-								onClick={() => {
-									return this.handleDeleteMainTask(experience.id, mainTask.id);
-								}}
-							>
-								<FontAwesomeIcon
-									icon={faTimesCircle}
-									size="2x"
-									className="pointer-events-none"
-								/>
-							</button>
+							<XDeleteButton
+								onClickProp={() =>
+									this.handleDeleteMainTask(experience.id, mainTask.id)
+								}
+							/>
 						</div>
 					</div>
 				);
@@ -181,18 +173,10 @@ class ExperiencesForm extends Component {
 					className="mb-2 p-4 border border-light rounded"
 					id="experienceInputs"
 				>
-					<button
-						type="button"
-						className="delete-btn cursor-pointer text-danger ml-2"
-						id="deleteExperienceBtn"
-						onClick={() => this.handleExperienceDelete(experience.id)}
-					>
-						<FontAwesomeIcon
-							icon={faTimesCircle}
-							size="2x"
-							className="pointer-events-none"
-						/>
-					</button>
+					<XDeleteButton
+						classesProp={'absTopRight'}
+						onClickProp={() => this.handleExperienceDelete(experience.id)}
+					/>
 					<div className="form-group">
 						<label htmlFor={`${experience.id}-companyName`}>Company Name</label>
 						<input
