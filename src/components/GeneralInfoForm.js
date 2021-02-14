@@ -8,9 +8,16 @@ class GeneralInfoForm extends Component {
 			email: this.props.generalInfo.email,
 			phoneNumber: this.props.generalInfo.phoneNumber,
 		};
-		this.handleInputChange = this.props.handleInputChange.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleCancelEdit = this.handleCancelEdit.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleInputChange(e) {
+		const target = e.target;
+		const name = target.name;
+		const value = target.value;
+		this.setState({ [name]: value });
 	}
 
 	handleCancelEdit() {

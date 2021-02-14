@@ -8,19 +8,12 @@ class App extends Component {
 		this.state = {};
 	}
 
-	handleInputChange(e) {
-		const target = e.target;
-		const name = target.name;
-		const value = target.value;
-		this.setState({ [name]: value });
-	}
-
 	render() {
 		return (
 			<main>
 				<div className="container my-4">
 					<div className="row justify-content-center">
-						<CV handleInputChange={this.handleInputChange} />
+						<CV />
 					</div>
 				</div>
 			</main>

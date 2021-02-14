@@ -119,8 +119,6 @@ class CV extends Component {
 	}
 
 	render() {
-		const { handleInputChange } = this.props;
-
 		const {
 			generalInfo,
 			skills,
@@ -133,7 +131,6 @@ class CV extends Component {
 			<article id="CV" className="col-md-8 p-5 bg-white box-shadow">
 				{editModes.generalInfo ? (
 					<GeneralInfoForm
-						handleInputChange={handleInputChange}
 						generalInfo={generalInfo}
 						changeEditMode={this.changeEditMode}
 						onSubmit={this.handleGeneralInfoUpdate}
