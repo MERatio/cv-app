@@ -11,7 +11,10 @@ function Educations(props) {
 				</p>
 
 				<p className="from-to-date">
-					<span>{education.date.from}</span> - <span>{education.date.to}</span>
+					<span>{education.date.from}</span> -{' '}
+					<span>
+						{education.date.toPresent ? 'Present' : education.date.to}
+					</span>
 				</p>
 			</li>
 		);
