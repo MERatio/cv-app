@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { format, formatISO } from 'date-fns';
 import '../styles/CV.css';
 
 import GeneralInfo from './GeneralInfo';
@@ -40,8 +41,8 @@ class CV extends Component {
 					companyName: 'NAPOLCOM, Quezon City',
 					positionTitle: 'IT Officer (OJT)',
 					date: {
-						from: '2018-11-01',
-						to: '2019-03-01',
+						from: new Date('2018-11-01'),
+						to: new Date('2019-03-01'),
 						toPresent: false,
 					},
 					mainTasks: [
@@ -64,8 +65,8 @@ class CV extends Component {
 					school: 'STI Novaliches',
 					title: 'Bachelor of Science in Information Technology',
 					date: {
-						from: '2015-06-01',
-						to: '2019-04-01',
+						from: new Date('2015-06-01'),
+						to: new Date('2019-04-01'),
 						toPresent: false,
 					},
 				},
@@ -118,6 +119,14 @@ class CV extends Component {
 		this.setState({ educations: newEducations });
 	}
 
+	formatDateForDisplay(date) {
+		return format(date, 'MMMM d, yyyy');
+	}
+
+	formatDateForForm(date) {
+		return !date ? '' : formatISO(date, { representation: 'date' });
+	}
+
 	render() {
 		const {
 			generalInfo,
@@ -157,11 +166,13 @@ class CV extends Component {
 						experiences={experiences}
 						changeEditMode={this.changeEditMode}
 						onSubmit={this.handleExperiencesUpdate}
+						formatDateForForm={this.formatDateForForm}
 					/>
 				) : (
 					<Experiences
 						experiences={experiences}
 						changeEditMode={this.changeEditMode}
+						formatDateForDisplay={this.formatDateForDisplay}
 					/>
 				)}
 				<hr />
@@ -170,11 +181,13 @@ class CV extends Component {
 						educations={educations}
 						changeEditMode={this.changeEditMode}
 						onSubmit={this.handleEducationsUpdate}
+						formatDateForForm={this.formatDateForForm}
 					/>
 				) : (
 					<Educations
 						educations={educations}
 						changeEditMode={this.changeEditMode}
+						formatDateForDisplay={this.formatDateForDisplay}
 					/>
 				)}
 			</article>

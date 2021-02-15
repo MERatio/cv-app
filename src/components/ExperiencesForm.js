@@ -33,7 +33,10 @@ class ExperiencesForm extends Component {
 						if (datePropNames.includes(name)) {
 							return {
 								...experience,
-								date: { ...experience.date, [name]: value },
+								date: {
+									...experience.date,
+									[name]: name === 'toPresent' ? value : new Date(value),
+								},
 							};
 						} else if (mainTaskId) {
 							return {
@@ -134,6 +137,7 @@ class ExperiencesForm extends Component {
 
 	render() {
 		const { experiences } = this.state;
+		const { formatDateForForm } = this.props;
 		const isoDateNow = new Date().toISOString().split('T')[0];
 		const experienceInputs = experiences.map((experience) => {
 			const mainTasksInputs = experience.mainTasks.map((mainTask, index) => {
@@ -220,7 +224,7 @@ class ExperiencesForm extends Component {
 							className="form-control"
 							id={`${experience.id}-dateFrom`}
 							name="from"
-							value={experience.date.from}
+							value={formatDateForForm(experience.date.from)}
 							required
 							max={isoDateNow}
 							onChange={(e) => {
@@ -236,7 +240,7 @@ class ExperiencesForm extends Component {
 								className="form-control"
 								id={`${experience.id}-dateTo`}
 								name="to"
-								value={experience.date.to}
+								value={formatDateForForm(experience.date.to)}
 								disabled={experience.date.toPresent}
 								required
 								max={isoDateNow}

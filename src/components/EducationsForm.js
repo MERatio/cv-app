@@ -31,7 +31,10 @@ class EducationsForm extends Component {
 						if (datePropNames.includes(name)) {
 							return {
 								...education,
-								date: { ...education.date, [name]: value },
+								date: {
+									...education.date,
+									[name]: name === 'toPresent' ? value : new Date(value),
+								},
 							};
 						} else {
 							return { ...education, [name]: value };
@@ -81,6 +84,7 @@ class EducationsForm extends Component {
 
 	render() {
 		const { educations } = this.state;
+		const { formatDateForForm } = this.props;
 		const isoDateNow = new Date().toISOString().split('T')[0];
 		const educationInputs = educations.map((education) => {
 			return (
@@ -128,7 +132,7 @@ class EducationsForm extends Component {
 							className="form-control"
 							id={`${education.id}-dateFrom`}
 							name="from"
-							value={education.date.from}
+							value={formatDateForForm(education.date.from)}
 							required
 							max={isoDateNow}
 							onChange={(e) => this.handleInputChange(education.id, e)}
@@ -142,7 +146,7 @@ class EducationsForm extends Component {
 								className="form-control"
 								id={`${education.id}-dateTo`}
 								name="to"
-								value={education.date.to}
+								value={formatDateForForm(education.date.to)}
 								disabled={education.date.toPresent}
 								required
 								max={isoDateNow}

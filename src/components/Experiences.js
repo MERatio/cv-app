@@ -1,7 +1,7 @@
 import pluralize from 'pluralize';
 
 function Experiences(props) {
-	const { experiences, changeEditMode } = props;
+	const { experiences, changeEditMode, formatDateForDisplay } = props;
 	const experiencesListItems = experiences.map((experience) => {
 		return (
 			<li key={experience.id} className="dd-li">
@@ -10,9 +10,11 @@ function Experiences(props) {
 					<span className="dd-user-title">{experience.positionTitle}</span>
 				</p>
 				<p className="from-to-date">
-					<span>{experience.date.from}</span> -{' '}
+					<span>{formatDateForDisplay(experience.date.from)}</span> -{' '}
 					<span>
-						{experience.date.toPresent ? 'Present' : experience.date.to}
+						{experience.date.toPresent
+							? 'Present'
+							: formatDateForDisplay(experience.date.to)}
 					</span>
 				</p>
 				<ul>
