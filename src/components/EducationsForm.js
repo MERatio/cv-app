@@ -78,7 +78,17 @@ class EducationsForm extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.onSubmit(this.state.educations);
+		this.props.onSubmit(
+			this.state.educations.map((education) => {
+				return {
+					...education,
+					date: {
+						...education.date,
+						to: education.date.toPresent ? undefined : education.date.to,
+					},
+				};
+			})
+		);
 		this.props.changeEditMode('educations', false);
 	}
 

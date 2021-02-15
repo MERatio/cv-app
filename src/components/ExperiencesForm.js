@@ -131,7 +131,17 @@ class ExperiencesForm extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.onSubmit(this.state.experiences);
+		this.props.onSubmit(
+			this.state.experiences.map((experience) => {
+				return {
+					...experience,
+					date: {
+						...experience.date,
+						to: experience.date.toPresent ? undefined : experience.date.to,
+					},
+				};
+			})
+		);
 		this.props.changeEditMode('experiences', false);
 	}
 
