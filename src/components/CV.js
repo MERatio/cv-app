@@ -124,7 +124,11 @@ class CV extends Component {
 	}
 
 	formatDateForForm(date) {
-		return !date ? '' : formatISO(date, { representation: 'date' });
+		try {
+			return !date ? '' : formatISO(date, { representation: 'date' });
+		} catch (err) {
+			return '';
+		}
 	}
 
 	render() {
