@@ -8,7 +8,7 @@ class ExperiencesForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			experiences: this.props.experiences,
+			experiences: [],
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleExperienceDelete = this.handleExperienceDelete.bind(this);
@@ -321,6 +321,12 @@ class ExperiencesForm extends Component {
 				</form>
 			</div>
 		);
+	}
+
+	componentDidMount() {
+		this.setState({
+			experiences: this.props.experiences,
+		});
 	}
 }
 

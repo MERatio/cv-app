@@ -4,9 +4,9 @@ class GeneralInfoForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			fullName: this.props.generalInfo.fullName,
-			email: this.props.generalInfo.email,
-			phoneNumber: this.props.generalInfo.phoneNumber,
+			fullName: '',
+			email: '',
+			phoneNumber: '',
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleCancelEdit = this.handleCancelEdit.bind(this);
@@ -88,6 +88,14 @@ class GeneralInfoForm extends Component {
 				</button>
 			</form>
 		);
+	}
+
+	componentDidMount() {
+		this.setState({
+			fullName: this.props.generalInfo.fullName,
+			email: this.props.generalInfo.email,
+			phoneNumber: this.props.generalInfo.phoneNumber,
+		});
 	}
 }
 

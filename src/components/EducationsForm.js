@@ -8,7 +8,7 @@ class EducationsForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			educations: this.props.educations,
+			educations: [],
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleEducationDelete = this.handleEducationDelete.bind(this);
@@ -213,6 +213,12 @@ class EducationsForm extends Component {
 				</form>
 			</div>
 		);
+	}
+
+	componentDidMount() {
+		this.setState({
+			educations: this.props.educations,
+		});
 	}
 }
 

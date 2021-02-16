@@ -8,7 +8,7 @@ class GeneralInfoForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			skills: this.props.skills,
+			skills: [],
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -113,6 +113,12 @@ class GeneralInfoForm extends Component {
 				</form>
 			</div>
 		);
+	}
+
+	componentDidMount() {
+		this.setState({
+			skills: this.props.skills,
+		});
 	}
 }
 
