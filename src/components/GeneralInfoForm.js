@@ -1,102 +1,82 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class GeneralInfoForm extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			fullName: '',
-			email: '',
-			phoneNumber: '',
-		};
-		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleCancelEdit = this.handleCancelEdit.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
+const GeneralInfoForm = (props) => {
+	const [inputs, setInputs] = useState(props.generalInfo);
 
-	handleInputChange(e) {
+	const handleInputChange = (e) => {
 		const target = e.target;
 		const name = target.name;
 		const value = target.value;
-		this.setState({ [name]: value });
-	}
+		setInputs({ ...inputs, [name]: value });
+	};
 
-	handleCancelEdit() {
-		this.props.changeEditMode('generalInfo', false);
-	}
+	const handleCancelEdit = () => {
+		props.changeEditMode('generalInfo', false);
+	};
 
-	handleSubmit(e) {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.onSubmit(this.state);
-		this.props.changeEditMode('generalInfo', false);
-	}
+		props.onSubmit(inputs);
+		props.changeEditMode('generalInfo', false);
+	};
 
-	render() {
-		const { fullName, email, phoneNumber } = this.state;
+	const { fullName, email, phoneNumber } = inputs;
 
-		return (
-			<form onSubmit={this.handleSubmit}>
-				<div className="form-group">
-					<label htmlFor="fullName">Full Name</label>
-					<input
-						type="text"
-						className="form-control"
-						id="fullName"
-						name="fullName"
-						value={fullName}
-						maxLength="255"
-						required
-						pattern="^.*[\S].*$"
-						onChange={this.handleInputChange}
-					/>
-				</div>
-				<div className="form-group">
-					<label htmlFor="email">Email</label>
-					<input
-						type="email"
-						className="form-control"
-						id="email"
-						name="email"
-						value={email}
-						maxLength="255"
-						onChange={this.handleInputChange}
-						required
-					/>
-				</div>
-				<div className="form-group">
-					<label htmlFor="phoneNumber">Phone Number</label>
-					<input
-						type="tel"
-						className="form-control"
-						id="phoneNumber"
-						name="phoneNumber"
-						value={phoneNumber}
-						maxLength="20"
-						onChange={this.handleInputChange}
-						required
-						pattern="^.*[\S].*$"
-					/>
-				</div>
-				<button type="submit" className="btn btn-primary">
-					Update
-				</button>
-				<button
-					type="button"
-					className="btn btn-secondary ml-2"
-					onClick={this.handleCancelEdit}
-				>
-					Cancel
-				</button>
-			</form>
-		);
-	}
-
-	componentDidMount() {
-		this.setState({
-			fullName: this.props.generalInfo.fullName,
-			email: this.props.generalInfo.email,
-			phoneNumber: this.props.generalInfo.phoneNumber,
-		});
-	}
-}
+	return (
+		<form onSubmit={handleSubmit}>
+			<div className="form-group">
+				<label htmlFor="fullName">Full Name</label>
+				<input
+					type="text"
+					className="form-control"
+					id="fullName"
+					name="fullName"
+					value={fullName}
+					maxLength="255"
+					required
+					pattern="^.*[\S].*$"
+					onChange={handleInputChange}
+				/>
+			</div>
+			<div className="form-group">
+				<label htmlFor="email">Email</label>
+				<input
+					type="email"
+					className="form-control"
+					id="email"
+					name="email"
+					value={email}
+					maxLength="255"
+					onChange={handleInputChange}
+					required
+				/>
+			</div>
+			<div className="form-group">
+				<label htmlFor="phoneNumber">Phone Number</label>
+				<input
+					type="tel"
+					className="form-control"
+					id="phoneNumber"
+					name="phoneNumber"
+					value={phoneNumber}
+					maxLength="20"
+					onChange={handleInputChange}
+					required
+					pattern="^.*[\S].*$"
+				/>
+			</div>
+			<button type="submit" className="btn btn-primary">
+				Update
+			</button>
+			<button
+				type="button"
+				className="btn btn-secondary ml-2"
+				onClick={handleCancelEdit}
+			>
+				Cancel
+			</button>
+		</form>
+	);
+};
 
 export default GeneralInfoForm;

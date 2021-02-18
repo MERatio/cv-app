@@ -1,85 +1,69 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import pluralize from 'pluralize';
 
 import XDeleteButton from './XDeleteButton';
 
-class EducationsForm extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			educations: [],
-		};
-		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleEducationDelete = this.handleEducationDelete.bind(this);
-		this.handleAddEducationInput = this.handleAddEducationInput.bind(this);
-		this.handleCancelEdit = this.handleCancelEdit.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
+const EducationsForm = (props) => {
+	const [educations, setEducations] = useState(props.educations);
 
-	handleInputChange(educationId, e) {
+	const handleInputChange = (educationId, e) => {
 		const target = e.target;
 		const name = target.name;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
 		const datePropNames = ['from', 'to', 'toPresent'];
-		this.setState((state) => {
-			return {
-				educations: state.educations.map((education) => {
-					if (education.id !== educationId) {
-						return education;
+		setEducations(
+			educations.map((education) => {
+				if (education.id !== educationId) {
+					return education;
+				} else {
+					if (datePropNames.includes(name)) {
+						return {
+							...education,
+							date: {
+								...education.date,
+								[name]: name === 'toPresent' ? value : new Date(value),
+							},
+						};
 					} else {
-						if (datePropNames.includes(name)) {
-							return {
-								...education,
-								date: {
-									...education.date,
-									[name]: name === 'toPresent' ? value : new Date(value),
-								},
-							};
-						} else {
-							return { ...education, [name]: value };
-						}
+						return { ...education, [name]: value };
 					}
-				}),
-			};
-		});
-	}
+				}
+			})
+		);
+	};
 
-	handleEducationDelete(educationId) {
-		this.setState((state) => {
-			return {
-				educations: state.educations.filter((education) => {
-					return education.id !== educationId;
-				}),
-			};
-		});
-	}
+	const handleEducationDelete = (educationId) => {
+		setEducations(
+			educations.filter((education) => {
+				return education.id !== educationId;
+			})
+		);
+	};
 
-	handleAddEducationInput() {
-		this.setState((state) => {
-			return {
-				educations: state.educations.concat({
-					id: nanoid(),
-					school: '',
-					title: '',
-					date: {
-						from: '',
-						to: '',
-						toPresent: false,
-					},
-				}),
-			};
-		});
-	}
+	const handleAddEducationInput = () => {
+		setEducations(
+			educations.concat({
+				id: nanoid(),
+				school: '',
+				title: '',
+				date: {
+					from: '',
+					to: '',
+					toPresent: false,
+				},
+			})
+		);
+	};
 
-	handleCancelEdit() {
-		this.props.changeEditMode('educations', false);
-	}
+	const handleCancelEdit = () => {
+		props.changeEditMode('educations', false);
+	};
 
-	handleSubmit(e) {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.onSubmit(
-			this.state.educations.map((education) => {
+		props.onSubmit(
+			educations.map((education) => {
 				return {
 					...education,
 					date: {
@@ -89,137 +73,128 @@ class EducationsForm extends Component {
 				};
 			})
 		);
-		this.props.changeEditMode('educations', false);
-	}
+		props.changeEditMode('educations', false);
+	};
 
-	render() {
-		const { educations } = this.state;
-		const { formatDateForForm } = this.props;
-		const isoDateNow = new Date().toISOString().split('T')[0];
-		const educationInputs = educations.map((education) => {
-			return (
-				<div
-					key={education.id}
-					className="mb-2 p-4 border border-light rounded"
-					id="educationInputs"
-				>
-					<XDeleteButton
-						classesProp={'absTopRight'}
-						onClickProp={() => this.handleEducationDelete(education.id)}
+	const { formatDateForForm } = props;
+	const isoDateNow = new Date().toISOString().split('T')[0];
+	const educationInputs = educations.map((education) => {
+		return (
+			<div
+				key={education.id}
+				className="mb-2 p-4 border border-light rounded"
+				id="educationInputs"
+			>
+				<XDeleteButton
+					classesProp={'absTopRight'}
+					onClickProp={() => handleEducationDelete(education.id)}
+				/>
+				<div className="form-group">
+					<label htmlFor={`${education.id}-school`}>School</label>
+					<input
+						type="text"
+						className="form-control"
+						id={`${education.id}-school`}
+						name="school"
+						value={education.school}
+						maxLength="255"
+						required
+						pattern="^.*[\S].*$"
+						onChange={(e) => handleInputChange(education.id, e)}
 					/>
-					<div className="form-group">
-						<label htmlFor={`${education.id}-school`}>School</label>
-						<input
-							type="text"
-							className="form-control"
-							id={`${education.id}-school`}
-							name="school"
-							value={education.school}
-							maxLength="255"
-							required
-							pattern="^.*[\S].*$"
-							onChange={(e) => this.handleInputChange(education.id, e)}
-						/>
-					</div>
-					<div className="form-group">
-						<label htmlFor={`${education.id}-title`}>Title</label>
-						<input
-							type="text"
-							className="form-control"
-							id={`${education.id}-title`}
-							name="title"
-							value={education.title}
-							maxLength="255"
-							required
-							pattern="^.*[\S].*$"
-							onChange={(e) => this.handleInputChange(education.id, e)}
-						/>
-					</div>
-					<div className="form-group">
-						<label htmlFor={`${education.id}-dateFrom`}>From:</label>
+				</div>
+				<div className="form-group">
+					<label htmlFor={`${education.id}-title`}>Title</label>
+					<input
+						type="text"
+						className="form-control"
+						id={`${education.id}-title`}
+						name="title"
+						value={education.title}
+						maxLength="255"
+						required
+						pattern="^.*[\S].*$"
+						onChange={(e) => handleInputChange(education.id, e)}
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor={`${education.id}-dateFrom`}>From:</label>
+					<input
+						type="date"
+						className="form-control"
+						id={`${education.id}-dateFrom`}
+						name="from"
+						value={formatDateForForm(education.date.from)}
+						required
+						max={isoDateNow}
+						onChange={(e) => handleInputChange(education.id, e)}
+					/>
+				</div>
+				<div className="form-row mb-3">
+					<div className="col-10">
+						<label htmlFor={`${education.id}-dateTo`}>To:</label>
 						<input
 							type="date"
 							className="form-control"
-							id={`${education.id}-dateFrom`}
-							name="from"
-							value={formatDateForForm(education.date.from)}
+							id={`${education.id}-dateTo`}
+							name="to"
+							value={formatDateForForm(education.date.to)}
+							disabled={education.date.toPresent}
 							required
 							max={isoDateNow}
-							onChange={(e) => this.handleInputChange(education.id, e)}
+							onChange={(e) => handleInputChange(education.id, e)}
 						/>
 					</div>
-					<div className="form-row mb-3">
-						<div className="col-10">
-							<label htmlFor={`${education.id}-dateTo`}>To:</label>
+					<div className="col-2 d-flex align-items-end">
+						<div className="form-check mb-2">
 							<input
-								type="date"
-								className="form-control"
-								id={`${education.id}-dateTo`}
-								name="to"
-								value={formatDateForForm(education.date.to)}
-								disabled={education.date.toPresent}
-								required
-								max={isoDateNow}
-								onChange={(e) => this.handleInputChange(education.id, e)}
+								type="checkbox"
+								className="form-check-input"
+								id={`${education.id}-dateToPresent`}
+								name="toPresent"
+								checked={education.date.toPresent}
+								onChange={(e) => handleInputChange(education.id, e)}
 							/>
-						</div>
-						<div className="col-2 d-flex align-items-end">
-							<div className="form-check mb-2">
-								<input
-									type="checkbox"
-									className="form-check-input"
-									id={`${education.id}-dateToPresent`}
-									name="toPresent"
-									checked={education.date.toPresent}
-									onChange={(e) => this.handleInputChange(education.id, e)}
-								/>
-								<label
-									className="form-check-label"
-									htmlFor={`${education.id}-dateToPresent`}
-								>
-									Present?
-								</label>
-							</div>
+							<label
+								className="form-check-label"
+								htmlFor={`${education.id}-dateToPresent`}
+							>
+								Present?
+							</label>
 						</div>
 					</div>
 				</div>
-			);
-		});
-
-		return (
-			<div>
-				<header>
-					<h2 className="dd-h2">{pluralize('Education', educations.length)}</h2>
-				</header>
-				<form onSubmit={this.handleSubmit}>
-					{educationInputs}
-					<button
-						type="button"
-						className="btn btn-dark d-block mb-4"
-						onClick={this.handleAddEducationInput}
-					>
-						Add new education
-					</button>
-					<button type="submit" className="btn btn-primary">
-						Update
-					</button>
-					<button
-						type="button"
-						className="btn btn-secondary ml-2"
-						onClick={this.handleCancelEdit}
-					>
-						Cancel
-					</button>
-				</form>
 			</div>
 		);
-	}
+	});
 
-	componentDidMount() {
-		this.setState({
-			educations: this.props.educations,
-		});
-	}
-}
+	return (
+		<div>
+			<header>
+				<h2 className="dd-h2">{pluralize('Education', educations.length)}</h2>
+			</header>
+			<form onSubmit={handleSubmit}>
+				{educationInputs}
+				<button
+					type="button"
+					className="btn btn-dark d-block mb-4"
+					onClick={handleAddEducationInput}
+				>
+					Add new education
+				</button>
+				<button type="submit" className="btn btn-primary">
+					Update
+				</button>
+				<button
+					type="button"
+					className="btn btn-secondary ml-2"
+					onClick={handleCancelEdit}
+				>
+					Cancel
+				</button>
+			</form>
+		</div>
+	);
+};
 
 export default EducationsForm;
