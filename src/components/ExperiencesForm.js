@@ -4,10 +4,10 @@ import pluralize from 'pluralize';
 
 import XDeleteButton from './XDeleteButton';
 
-const ExperiencesForm = (props) => {
+function ExperiencesForm(props) {
 	const [experiences, setExperiences] = useState(props.experiences);
 
-	const handleInputChange = (experienceId, mainTaskId, e) => {
+	function handleInputChange(experienceId, mainTaskId, e) {
 		const target = e.target;
 		const name = target.name;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -42,17 +42,17 @@ const ExperiencesForm = (props) => {
 				}
 			})
 		);
-	};
+	}
 
-	const handleExperienceDelete = (experienceId) => {
+	function handleExperienceDelete(experienceId) {
 		setExperiences(
 			experiences.filter((experience) => {
 				return experience.id !== experienceId;
 			})
 		);
-	};
+	}
 
-	const handleAddExperienceInput = () => {
+	function handleAddExperienceInput() {
 		setExperiences(
 			experiences.concat({
 				id: nanoid(),
@@ -66,9 +66,9 @@ const ExperiencesForm = (props) => {
 				mainTasks: [{ id: nanoid(), description: '' }],
 			})
 		);
-	};
+	}
 
-	const handleAddMainTask = (experienceId) => {
+	function handleAddMainTask(experienceId) {
 		setExperiences(
 			experiences.map((experience) => {
 				if (experience.id !== experienceId) {
@@ -84,9 +84,9 @@ const ExperiencesForm = (props) => {
 				}
 			})
 		);
-	};
+	}
 
-	const handleDeleteMainTask = (experienceId, mainTaskId) => {
+	function handleDeleteMainTask(experienceId, mainTaskId) {
 		setExperiences(
 			experiences.map((experience) => {
 				if (experience.id !== experienceId) {
@@ -101,13 +101,13 @@ const ExperiencesForm = (props) => {
 				}
 			})
 		);
-	};
+	}
 
-	const handleCancelEdit = () => {
+	function handleCancelEdit() {
 		props.changeEditMode('experiences', false);
-	};
+	}
 
-	const handleSubmit = (e) => {
+	function handleSubmit(e) {
 		e.preventDefault();
 		props.onSubmit(
 			experiences.map((experience) => {
@@ -121,7 +121,7 @@ const ExperiencesForm = (props) => {
 			})
 		);
 		props.changeEditMode('experiences', false);
-	};
+	}
 
 	const { formatDateForForm } = props;
 	const isoDateNow = new Date().toISOString().split('T')[0];
@@ -295,6 +295,6 @@ const ExperiencesForm = (props) => {
 			</form>
 		</div>
 	);
-};
+}
 
 export default ExperiencesForm;

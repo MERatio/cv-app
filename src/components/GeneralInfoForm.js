@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 
-const GeneralInfoForm = (props) => {
+function GeneralInfoForm(props) {
 	const [inputs, setInputs] = useState(props.generalInfo);
 
-	const handleInputChange = (e) => {
+	function handleInputChange(e) {
 		const target = e.target;
 		const name = target.name;
 		const value = target.value;
 		setInputs({ ...inputs, [name]: value });
-	};
+	}
 
-	const handleCancelEdit = () => {
+	function handleCancelEdit() {
 		props.changeEditMode('generalInfo', false);
-	};
+	}
 
-	const handleSubmit = (e) => {
+	function handleSubmit(e) {
 		e.preventDefault();
 		props.onSubmit(inputs);
 		props.changeEditMode('generalInfo', false);
-	};
+	}
 
 	const { fullName, email, phoneNumber } = inputs;
 
@@ -77,6 +77,6 @@ const GeneralInfoForm = (props) => {
 			</button>
 		</form>
 	);
-};
+}
 
 export default GeneralInfoForm;

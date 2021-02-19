@@ -4,10 +4,10 @@ import pluralize from 'pluralize';
 
 import XDeleteButton from './XDeleteButton';
 
-const EducationsForm = (props) => {
+function EducationsForm(props) {
 	const [educations, setEducations] = useState(props.educations);
 
-	const handleInputChange = (educationId, e) => {
+	function handleInputChange(educationId, e) {
 		const target = e.target;
 		const name = target.name;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -31,17 +31,17 @@ const EducationsForm = (props) => {
 				}
 			})
 		);
-	};
+	}
 
-	const handleEducationDelete = (educationId) => {
+	function handleEducationDelete(educationId) {
 		setEducations(
 			educations.filter((education) => {
 				return education.id !== educationId;
 			})
 		);
-	};
+	}
 
-	const handleAddEducationInput = () => {
+	function handleAddEducationInput() {
 		setEducations(
 			educations.concat({
 				id: nanoid(),
@@ -54,13 +54,13 @@ const EducationsForm = (props) => {
 				},
 			})
 		);
-	};
+	}
 
-	const handleCancelEdit = () => {
+	function handleCancelEdit() {
 		props.changeEditMode('educations', false);
-	};
+	}
 
-	const handleSubmit = (e) => {
+	function handleSubmit(e) {
 		e.preventDefault();
 		props.onSubmit(
 			educations.map((education) => {
@@ -74,7 +74,7 @@ const EducationsForm = (props) => {
 			})
 		);
 		props.changeEditMode('educations', false);
-	};
+	}
 
 	const { formatDateForForm } = props;
 	const isoDateNow = new Date().toISOString().split('T')[0];
@@ -195,6 +195,6 @@ const EducationsForm = (props) => {
 			</form>
 		</div>
 	);
-};
+}
 
 export default EducationsForm;

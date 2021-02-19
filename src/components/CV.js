@@ -12,7 +12,7 @@ import ExperiencesForm from './ExperiencesForm';
 import Educations from './Educations';
 import EducationsForm from './EducationsForm';
 
-const CV = (props) => {
+function CV(props) {
 	const [generalInfo, setGeneralInfo] = useState({
 		fullName: 'Mark Edward Ratio',
 		email: 'markedwardratio@gmail.com',
@@ -79,38 +79,38 @@ const CV = (props) => {
 		educations: false,
 	});
 
-	const changeEditMode = (section, editMode) => {
+	function changeEditMode(section, editMode) {
 		setEditModes({ ...editModes, [section]: editMode });
-	};
+	}
 
-	const handleGeneralInfoUpdate = (newGeneralInfo) => {
+	function handleGeneralInfoUpdate(newGeneralInfo) {
 		const { fullName, email, phoneNumber } = newGeneralInfo;
 		setGeneralInfo({ fullName, email, phoneNumber });
-	};
+	}
 
-	const handleSkillsUpdate = (newSkills) => {
+	function handleSkillsUpdate(newSkills) {
 		setSkills(newSkills);
-	};
+	}
 
-	const handleExperiencesUpdate = (newExperiences) => {
+	function handleExperiencesUpdate(newExperiences) {
 		setExperiences(newExperiences);
-	};
+	}
 
-	const handleEducationsUpdate = (newEducations) => {
+	function handleEducationsUpdate(newEducations) {
 		setEducations(newEducations);
-	};
+	}
 
-	const formatDateForDisplay = (date) => {
+	function formatDateForDisplay(date) {
 		return format(date, 'MMMM d, yyyy');
-	};
+	}
 
-	const formatDateForForm = (date) => {
+	function formatDateForForm(date) {
 		try {
 			return !date ? '' : formatISO(date, { representation: 'date' });
 		} catch (err) {
 			return '';
 		}
-	};
+	}
 
 	return (
 		<article id="CV" className="col-md-8 p-5 bg-white box-shadow">
@@ -168,6 +168,6 @@ const CV = (props) => {
 			)}
 		</article>
 	);
-};
+}
 
 export default CV;

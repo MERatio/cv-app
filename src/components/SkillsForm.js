@@ -7,7 +7,7 @@ import XDeleteButton from './XDeleteButton';
 function GeneralInfoForm(props) {
 	const [skills, setSkills] = useState(props.skills);
 
-	const handleInputChange = (skillId, e) => {
+	function handleInputChange(skillId, e) {
 		const target = e.target;
 		const name = target.name;
 		const value = target.value;
@@ -20,25 +20,25 @@ function GeneralInfoForm(props) {
 				}
 			})
 		);
-	};
+	}
 
-	const handleSkillDelete = (skillId) => {
+	function handleSkillDelete(skillId) {
 		setSkills(skills.filter((skill) => skill.id !== skillId));
-	};
+	}
 
-	const handleAddSkillInput = () => {
+	function handleAddSkillInput() {
 		setSkills(skills.concat({ id: nanoid(), name: '' }));
-	};
+	}
 
-	const handleCancelEdit = () => {
+	function handleCancelEdit() {
 		props.changeEditMode('skills', false);
-	};
+	}
 
-	const handleSubmit = (e) => {
+	function handleSubmit(e) {
 		e.preventDefault();
 		props.onSubmit(skills);
 		props.changeEditMode('skills', false);
-	};
+	}
 
 	const skillInputs = skills.map((skill, index) => {
 		return (
